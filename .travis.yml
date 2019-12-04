@@ -1,0 +1,17 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - docker build --tag coil/custom_miniconda_build .
+  - docker run coil/custom_miniconda_build
+
+before_deploy:
+  - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
+
+deploy:
+  provider: script
+  script: docker push coil/custom_miniconda_build
+  on:
+    branch: master
