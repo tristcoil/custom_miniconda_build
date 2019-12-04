@@ -5,7 +5,7 @@ services:
 
 script:
   - docker build --tag coil/custom_miniconda_build .
-  - docker run coil/custom_miniconda_build
+#  - docker run coil/custom_miniconda_build
 
 before_deploy:
   - docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASS}
